@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: account
+  labels:
+    app: account
+spec:
+  type: ClusterIP
+  selector:
+    app: account
+  ports:
+  - name: grpc
+    port: 10000
+    targetPort: grpc

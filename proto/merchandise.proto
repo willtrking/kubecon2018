@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package proto;
+
+
+message Product {
+
+    string id = 1;
+
+    string name = 2;
+}
+
+
+
+message ProductRequest {
+    string id = 1;
+}
+
+service Merchandise {
+
+    rpc GetProductByID(ProductRequest) returns (Product);
+
+}

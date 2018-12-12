@@ -1,0 +1,38 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cart
+  labels:
+    app: cart
+spec:
+  replicas: 2
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 30%
+      maxUnavailable: 30%
+  selector:
+    matchLabels:
+      app: cart
+  template:
+    metadata:
+      labels:
+        app: cart
+    spec:
+      containers:
+        - name: cart
+          image: quay.io/willtrking/kubecon2018:7
+          env:
+            - name: MERCHANDISE_HOST
+              value: "merchandise:10000"
+            - name: ACCOUNT_HOST
+              value: "account:10000"
+          command:
+            - /kubecon2018-linux
+            - cart
+          ports:
+          - name: grpc
+            containerPort: 10000

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package proto;
+
+message Account {
+
+    string account_id = 1;
+
+}
+
+message AccountReq {
+    string account_id = 1;
+}
+
+
+service Accounts {
+
+    rpc GetAccount(AccountReq) returns (Account);
+
+}

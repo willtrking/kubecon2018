@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: merchandise
+  labels:
+    app: merchandise
+spec:
+  type: ClusterIP
+  selector:
+    app: merchandise
+  ports:
+  - name: grpc
+    port: 10000
+    targetPort: grpc
